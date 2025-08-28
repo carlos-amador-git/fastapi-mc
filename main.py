@@ -8,7 +8,7 @@ origins = [
     "http://localhost:3000",  # Your frontend application
     "https://your-frontend-domain.com",
     "http://127.0.0.1:3000",
-    "https://fastapi-mc.vercel.app",
+    "https://gf7ef8efb74e614-ys0k48631ld4v415.adb.us-phoenix-1.oraclecloudapps.com",
 ]
 
 # Add the middleware to your application
