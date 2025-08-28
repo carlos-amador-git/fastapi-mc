@@ -1,15 +1,30 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
-# Create an instance of the FastAPI class
 app = FastAPI()
 
-# Define a path operation decorator for the root URL ("/")
+# List of allowed origins
+origins = [
+    "http://localhost:3000",  # Your frontend application
+    "https://your-frontend-domain.com",
+    "http://127.0.0.1:3000",
+    "https://fastapi-mc.vercel.app",
+]
+
+# Add the middleware to your application
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,  # Specifies which origins are allowed to make requests
+    allow_credentials=True, # Allows cookies to be included in requests
+    allow_methods=["GET", "POST", "PUT", "DELETE"], # Defines allowed HTTP methods
+    allow_headers=["*"], # Allows all headers
+)
+
+# Your existing path operations...
 @app.get("/")
 def read_root():
-    # Define the function that will be executed when the URL is accessed
-    return {"message": "Hello, Elvy!"}
+    return {"message": "Hello, World!"}
 
-# You can define other routes as well
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: str = None):
-    return {"item_id": item_id, "q": q}
+@app.post("/items/")
+def create_item():
+    return {"message": "Item created!"}
